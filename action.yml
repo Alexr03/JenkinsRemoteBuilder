@@ -1,6 +1,38 @@
 ﻿# action.yml
 name: 'Jenkins Remote Builder'
 description: 'Remotely Build a jenkins job from Github Actions.'
+inputs:
+  JENKINS_HOST:
+    description: 'URL to the jenkins instance'
+    required: true
+  JENKINS_USER:
+    description: 'Jenkins user'
+    required: true
+  JENKINS_API_KEY:
+    description: 'Jenkins API key'
+    required: true
+  JOB:
+    description: 'Job to build'
+    required: true
+  DOWNLOAD_ARTIFACT:
+    description: 'Download an artifact'
+    required: false
+    default: 'false'
+  ARTIFACT_NAME:
+    description: 'The name of the artifact'
+    required: false
+    default: ''
+  WAIT_FOR_COMPLETION:
+    description: 'Wait for completion of the build'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    JENKINS_HOST: ${{ inputs.JENKINS_HOST }}
+    JENKINS_USER: ${{ inputs.JENKINS_USER }}
+    JENKINS_API_KEY: ${{ inputs.JENKINS_API_KEY }}
+    JOB: ${{ inputs.JOB }}
+    DOWNLOAD_ARTIFACT: ${{ inputs.DOWNLOAD_ARTIFACT }}
+    ARTIFACT_NAME: ${{ inputs.ARTIFACT_NAME }}
+    WAIT_FOR_COMPLETION: ${{ inputs.WAIT_FOR_COMPLETION }}
