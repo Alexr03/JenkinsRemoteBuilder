@@ -1,0 +1,6 @@
+﻿# action.yml
+name: 'Jenkins Remote Builder'
+description: 'Remotely Build a jenkins job from Github Actions.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
