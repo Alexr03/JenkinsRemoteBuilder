@@ -8,6 +8,5 @@ RUN dotnet publish -c release -o /app
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/runtime:5.0
-WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "JenkinsRemoteBuilder.dll"]
+COPY --from=build /app ./app
+ENTRYPOINT ["dotnet", "/app/JenkinsRemoteBuilder.dll"]
