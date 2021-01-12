@@ -15,7 +15,7 @@ namespace JenkinsRemoteBuilder
         static void Main(string[] args)
         {
             SetupEnvironment();
-            Log.Information("Hello World!");
+            Log.Information("Jenkins Remote Builder");
             ExecuteJenkinsJob();
         }
 
@@ -59,6 +59,7 @@ namespace JenkinsRemoteBuilder
             using var fileStream = new FileStream($"./" + fileName, FileMode.Create,
                 FileAccess.Write);
             stream.CopyTo(fileStream);
+            Log.Information("Downloaded artifact to: " + fileStream.Name);
         }
 
         private static void SetupEnvironment()
